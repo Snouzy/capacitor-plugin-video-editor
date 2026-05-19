@@ -1,0 +1,296 @@
+{
+  "api": {
+    "name": "VideoEditorPlugin",
+    "slug": "videoeditorplugin",
+    "docs": "",
+    "tags": [],
+    "methods": [
+      {
+        "name": "edit",
+        "signature": "(options: EditOptions) => Promise<MediaFileResult>",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "",
+            "type": "EditOptions"
+          }
+        ],
+        "returns": "Promise<MediaFileResult>",
+        "tags": [],
+        "docs": "",
+        "complexTypes": [
+          "MediaFileResult",
+          "EditOptions"
+        ],
+        "slug": "edit"
+      },
+      {
+        "name": "thumbnail",
+        "signature": "(options: ThumbnailOptions) => Promise<MediaFileResult>",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "",
+            "type": "ThumbnailOptions"
+          }
+        ],
+        "returns": "Promise<MediaFileResult>",
+        "tags": [],
+        "docs": "",
+        "complexTypes": [
+          "MediaFileResult",
+          "ThumbnailOptions"
+        ],
+        "slug": "thumbnail"
+      },
+      {
+        "name": "addListener",
+        "signature": "(eventName: 'transcodeProgress', listenerFunc: (info: ProgressInfo) => void) => Promise<PluginListenerHandle> & PluginListenerHandle",
+        "parameters": [
+          {
+            "name": "eventName",
+            "docs": "",
+            "type": "'transcodeProgress'"
+          },
+          {
+            "name": "listenerFunc",
+            "docs": "",
+            "type": "(info: ProgressInfo) => void"
+          }
+        ],
+        "returns": "Promise<PluginListenerHandle> & PluginListenerHandle",
+        "tags": [],
+        "docs": "",
+        "complexTypes": [
+          "PluginListenerHandle",
+          "ProgressInfo"
+        ],
+        "slug": "addlistenertranscodeprogress-"
+      }
+    ],
+    "properties": []
+  },
+  "interfaces": [
+    {
+      "name": "MediaFileResult",
+      "slug": "mediafileresult",
+      "docs": "",
+      "tags": [],
+      "methods": [],
+      "properties": [
+        {
+          "name": "file",
+          "tags": [],
+          "docs": "",
+          "complexTypes": [
+            "MediaFile"
+          ],
+          "type": "MediaFile"
+        }
+      ]
+    },
+    {
+      "name": "MediaFile",
+      "slug": "mediafile",
+      "docs": "",
+      "tags": [],
+      "methods": [],
+      "properties": [
+        {
+          "name": "name",
+          "tags": [],
+          "docs": "The name of the file, without path information.",
+          "complexTypes": [],
+          "type": "string"
+        },
+        {
+          "name": "path",
+          "tags": [],
+          "docs": "The full path of the file, including the name.",
+          "complexTypes": [],
+          "type": "string"
+        },
+        {
+          "name": "type",
+          "tags": [],
+          "docs": "The file's mime type",
+          "complexTypes": [],
+          "type": "string"
+        },
+        {
+          "name": "size",
+          "tags": [],
+          "docs": "The size of the file, in bytes.",
+          "complexTypes": [],
+          "type": "number"
+        }
+      ]
+    },
+    {
+      "name": "EditOptions",
+      "slug": "editoptions",
+      "docs": "",
+      "tags": [],
+      "methods": [],
+      "properties": [
+        {
+          "name": "path",
+          "tags": [],
+          "docs": "",
+          "complexTypes": [],
+          "type": "string"
+        },
+        {
+          "name": "trim",
+          "tags": [],
+          "docs": "",
+          "complexTypes": [
+            "TrimOptions"
+          ],
+          "type": "TrimOptions"
+        },
+        {
+          "name": "transcode",
+          "tags": [],
+          "docs": "",
+          "complexTypes": [
+            "TranscodeOptions"
+          ],
+          "type": "TranscodeOptions"
+        }
+      ]
+    },
+    {
+      "name": "TrimOptions",
+      "slug": "trimoptions",
+      "docs": "",
+      "tags": [],
+      "methods": [],
+      "properties": [
+        {
+          "name": "startsAt",
+          "tags": [],
+          "docs": "StartsAt in milliseconds",
+          "complexTypes": [],
+          "type": "number | undefined"
+        },
+        {
+          "name": "endsAt",
+          "tags": [],
+          "docs": "EndsAt in milliseconds",
+          "complexTypes": [],
+          "type": "number | undefined"
+        }
+      ]
+    },
+    {
+      "name": "TranscodeOptions",
+      "slug": "transcodeoptions",
+      "docs": "",
+      "tags": [],
+      "methods": [],
+      "properties": [
+        {
+          "name": "height",
+          "tags": [],
+          "docs": "",
+          "complexTypes": [],
+          "type": "number | undefined"
+        },
+        {
+          "name": "width",
+          "tags": [],
+          "docs": "",
+          "complexTypes": [],
+          "type": "number | undefined"
+        },
+        {
+          "name": "keepAspectRatio",
+          "tags": [],
+          "docs": "Keep Aspect Ratio, default `true`",
+          "complexTypes": [],
+          "type": "boolean | undefined"
+        },
+        {
+          "name": "fps",
+          "tags": [],
+          "docs": "Frames per second, default `30`",
+          "complexTypes": [],
+          "type": "number | undefined"
+        }
+      ]
+    },
+    {
+      "name": "ThumbnailOptions",
+      "slug": "thumbnailoptions",
+      "docs": "",
+      "tags": [],
+      "methods": [],
+      "properties": [
+        {
+          "name": "path",
+          "tags": [],
+          "docs": "",
+          "complexTypes": [],
+          "type": "string"
+        },
+        {
+          "name": "at",
+          "tags": [],
+          "docs": "The time position where the frame will be retrieved in milliseconds.",
+          "complexTypes": [],
+          "type": "number | undefined"
+        },
+        {
+          "name": "width",
+          "tags": [],
+          "docs": "",
+          "complexTypes": [],
+          "type": "number | undefined"
+        },
+        {
+          "name": "height",
+          "tags": [],
+          "docs": "",
+          "complexTypes": [],
+          "type": "number | undefined"
+        }
+      ]
+    },
+    {
+      "name": "PluginListenerHandle",
+      "slug": "pluginlistenerhandle",
+      "docs": "",
+      "tags": [],
+      "methods": [],
+      "properties": [
+        {
+          "name": "remove",
+          "tags": [],
+          "docs": "",
+          "complexTypes": [],
+          "type": "() => Promise<void>"
+        }
+      ]
+    },
+    {
+      "name": "ProgressInfo",
+      "slug": "progressinfo",
+      "docs": "",
+      "tags": [],
+      "methods": [],
+      "properties": [
+        {
+          "name": "progress",
+          "tags": [],
+          "docs": "",
+          "complexTypes": [],
+          "type": "number"
+        }
+      ]
+    }
+  ],
+  "enums": [],
+  "typeAliases": [],
+  "pluginConfigs": []
+}
