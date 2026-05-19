@@ -128,14 +128,14 @@ VideoEditor.thumbnail({
 ### edit(...)
 
 ```typescript
-edit(options: EditOptions) => any
+edit(options: EditOptions) => Promise<MediaFileResult>
 ```
 
 | Param         | Type                                                |
 | ------------- | --------------------------------------------------- |
 | **`options`** | <code><a href="#editoptions">EditOptions</a></code> |
 
-**Returns:** <code>any</code>
+**Returns:** <code>Promise&lt;<a href="#mediafileresult">MediaFileResult</a>&gt;</code>
 
 --------------------
 
@@ -143,14 +143,14 @@ edit(options: EditOptions) => any
 ### thumbnail(...)
 
 ```typescript
-thumbnail(options: ThumbnailOptions) => any
+thumbnail(options: ThumbnailOptions) => Promise<MediaFileResult>
 ```
 
 | Param         | Type                                                          |
 | ------------- | ------------------------------------------------------------- |
 | **`options`** | <code><a href="#thumbnailoptions">ThumbnailOptions</a></code> |
 
-**Returns:** <code>any</code>
+**Returns:** <code>Promise&lt;<a href="#mediafileresult">MediaFileResult</a>&gt;</code>
 
 --------------------
 
@@ -166,12 +166,29 @@ addListener(eventName: 'transcodeProgress', listenerFunc: (info: ProgressInfo) =
 | **`eventName`**    | <code>'transcodeProgress'</code>                                         |
 | **`listenerFunc`** | <code>(info: <a href="#progressinfo">ProgressInfo</a>) =&gt; void</code> |
 
-**Returns:** <code>any</code>
+**Returns:** <code>Promise&lt;<a href="#pluginlistenerhandle">PluginListenerHandle</a>&gt; & <a href="#pluginlistenerhandle">PluginListenerHandle</a></code>
 
 --------------------
 
 
 ### Interfaces
+
+
+#### MediaFileResult
+
+| Prop       | Type                                            |
+| ---------- | ----------------------------------------------- |
+| **`file`** | <code><a href="#mediafile">MediaFile</a></code> |
+
+
+#### MediaFile
+
+| Prop       | Type                | Description                                     |
+| ---------- | ------------------- | ----------------------------------------------- |
+| **`name`** | <code>string</code> | The name of the file, without path information. |
+| **`path`** | <code>string</code> | The full path of the file, including the name.  |
+| **`type`** | <code>string</code> | The file's mime type                            |
+| **`size`** | <code>number</code> | The size of the file, in bytes.                 |
 
 
 #### EditOptions
@@ -201,23 +218,6 @@ addListener(eventName: 'transcodeProgress', listenerFunc: (info: ProgressInfo) =
 | **`fps`**             | <code>number</code>  | Frames per second, default `30`   |
 
 
-#### MediaFileResult
-
-| Prop       | Type                                            |
-| ---------- | ----------------------------------------------- |
-| **`file`** | <code><a href="#mediafile">MediaFile</a></code> |
-
-
-#### MediaFile
-
-| Prop       | Type                | Description                                     |
-| ---------- | ------------------- | ----------------------------------------------- |
-| **`name`** | <code>string</code> | The name of the file, without path information. |
-| **`path`** | <code>string</code> | The full path of the file, including the name.  |
-| **`type`** | <code>string</code> | The file's mime type                            |
-| **`size`** | <code>number</code> | The size of the file, in bytes.                 |
-
-
 #### ThumbnailOptions
 
 | Prop         | Type                | Description                                                          |
@@ -228,17 +228,17 @@ addListener(eventName: 'transcodeProgress', listenerFunc: (info: ProgressInfo) =
 | **`height`** | <code>number</code> |                                                                      |
 
 
+#### PluginListenerHandle
+
+| Prop         | Type                                      |
+| ------------ | ----------------------------------------- |
+| **`remove`** | <code>() =&gt; Promise&lt;void&gt;</code> |
+
+
 #### ProgressInfo
 
 | Prop           | Type                |
 | -------------- | ------------------- |
 | **`progress`** | <code>number</code> |
-
-
-#### PluginListenerHandle
-
-| Prop         | Type                      |
-| ------------ | ------------------------- |
-| **`remove`** | <code>() =&gt; any</code> |
 
 </docgen-api>

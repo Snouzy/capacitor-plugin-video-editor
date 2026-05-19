@@ -130,10 +130,26 @@ extension SimpleSessionExporter {
 
         instruction.layerInstructions = [layerInstruction]
 
-        // Export
+        // Map the requested output size to the closest Apple-provided
+        // export preset. The legacy hard-coded `AVAssetExportPresetMediumQuality`
+        // capped *every* transcode at ~480p with a fixed bitrate,
+        // regardless of the width/height the caller passed — so requesting
+        // 720p vs 1080p produced identical files. Resolution presets give
+        // the caller actual control over output quality / size.
+        //
+        // Note: Apple presets only *cap* the resolution. If the source is
+        // smaller than the preset, AVAssetExportSession does NOT upscale.
+        let presetName: String = {
+            let major = max(width, height)
+            if major >= 1920 { return AVAssetExportPreset1920x1080 }
+            if major >= 1280 { return AVAssetExportPreset1280x720 }
+            if major >= 960  { return AVAssetExportPreset960x540 }
+            return AVAssetExportPreset640x480
+        }()
+
         guard let export = AVAssetExportSession(
                 asset: composition,
-                presetName: AVAssetExportPresetMediumQuality)
+                presetName: presetName)
         else {
             print("Cannot create export session.")
             completionHandler(.failed)
